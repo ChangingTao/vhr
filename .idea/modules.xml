@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/vhr/vhr.iml" filepath="$PROJECT_DIR$/vhr/vhr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/微人事.iml" filepath="$PROJECT_DIR$/.idea/微人事.iml" />
+    </modules>
+  </component>
+</project>

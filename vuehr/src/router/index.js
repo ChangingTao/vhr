@@ -3,10 +3,10 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const Login = () => import ('@/views/Login/Login')
-const Home = () => import ('@/views/Home/Home')
-const test1 = () => import ('@/views/Home/childrenCmp/test1')
-const test2 = () => import ('@/views/Home/childrenCmp/test2')
+const Login = () => import ('@/views/Login')
+const Home = () => import ('@/views/Home')
+const test1 = () => import ('@/views/homeChildrenCmp/test1')
+const test2 = () => import ('@/views/homeChildrenCmp/test2')
 
 const routes = [
   {path: '/', name: 'Login', component: Login, hidden: true},// hidden:隐藏标识，用于标记，当hidden不为true时...

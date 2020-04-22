@@ -6,10 +6,11 @@
         <el-input type="text" v-model="LoginForm.username" auto-complete="off" placeholder="请输入用户名"></el-input>
       </el-form-item>
       <el-form-item label="用户密码" prop="password">
-        <el-input type="password" v-model="LoginForm.password" auto-complete="off" placeholder="请输入用户名"></el-input>
+        <el-input type="password" v-model="LoginForm.password"
+                  auto-complete="off" placeholder="请输入密码" @keydown.enter.native="submitClick"></el-input>
       </el-form-item>
       <el-checkbox v-model="checked" class="LoginRemember">记住我</el-checkbox>
-      <el-button type="primary" style="width: 100%;" @click="submitClick">登录</el-button>
+      <el-button type="primary" style="width: 100%;" @click="submitClick" >登录</el-button>
     </el-form>
   </div>
 </template>

@@ -16,12 +16,12 @@
       </el-header>
       <el-container>
         <el-aside width="200px">
-          <el-menu router>
-            <el-submenu index="1" v-for="(item,index) in this.$router.options.routes"
+          <el-menu router unique-opened>
+            <el-submenu :index="index + '' " v-for="(item,index) in routes"
                         v-if="!item.hidden"
                         :key="index">
               <template slot="title">
-                <i class="el-icon-location"></i>
+                <i style="color: #409eff;margin-right: 6px" :class="item.iconCls"></i>
                 <span>{{item.name}}</span>
               </template>
               <el-menu-item :index="child.path" v-for="(child,indexj) in item.children" :key="indexj">{{child.name}}
@@ -58,6 +58,8 @@
             // 清空sessionStorage的用户信息
             window.sessionStorage.removeItem("user")
             this.$router.replace("/")
+            // 清空Vuex中的菜单数据
+            this.$store.commit('initRoutes', [])
           }).catch(() => {
             this.$message({
               type: 'info',
@@ -65,6 +67,11 @@
             });
           });
         }
+      }
+    },
+    computed:{
+      routes(){
+        return this.$store.state.routes;
       }
     }
   }

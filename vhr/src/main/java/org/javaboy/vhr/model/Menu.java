@@ -18,10 +18,20 @@ public class Menu {
     private Meta meta;
     // 路由的 children 值
     private List<Menu> children;
+    // 需要哪些角色才可以访问
+    private List<Role> roles;
 
     private Integer parentId;
 
     private Boolean enabled;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public Meta getMeta() {
         return meta;

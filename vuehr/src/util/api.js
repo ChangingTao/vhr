@@ -31,7 +31,6 @@ axios.interceptors.response.use(res => {
       Message.error("未知错误！")
     }
   }
-  return;
 })
 
 export const postKeyValueRequest = (url, params) => {

@@ -19,6 +19,9 @@
   <select id="loadUserByUsername" resultMap="BaseResultMap">
     select * from hr where username = #{username}
   </select>
+  <select id="getHrRolesById" resultType="org.javaboy.vhr.model.Role">
+      select r.* from role r,hr_role hrr where hrr.`rid` = r.`id` and hrr.`hrid`=#{id}
+    </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -152,4 +155,5 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

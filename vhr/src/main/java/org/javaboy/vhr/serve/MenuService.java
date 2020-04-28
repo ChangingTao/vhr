@@ -16,7 +16,7 @@ import java.util.List;
  * @Date 2020-04-20 12:02
  **/
 @Service
-public class MenuServer {
+public class MenuService {
     @Autowired
     MenuMapper menuMapper;
 

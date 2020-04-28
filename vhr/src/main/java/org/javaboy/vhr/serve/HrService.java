@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @Date 2020-03-25 16:22
  **/
 @Service
-public class HrServer implements UserDetailsService {
+public class HrService implements UserDetailsService {
 
     @Autowired
     HrMapper hrMapper;

@@ -2,7 +2,7 @@ package org.javaboy.vhr.config;
 
 import org.javaboy.vhr.model.Menu;
 import org.javaboy.vhr.model.Role;
-import org.javaboy.vhr.serve.MenuServer;
+import org.javaboy.vhr.serve.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -23,16 +23,17 @@ import java.util.List;
 @Component
 public class CustomFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     @Autowired
-    MenuServer menuServer;
+    MenuService menuService;
     // 工具类：用来匹配url地址（访问的地址和数据库中的地址）
     AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         String requestUrl = ((FilterInvocation) object).getRequestUrl();// 当前请求的地址
-        List<Menu> menus = menuServer.getAllMenusWithRole(); // 获取跳转地址所需要的角色列表
+        List<Menu> menus = menuService.getAllMenusWithRole(); // 获取跳转地址所需要的角色列表
         for (Menu menu : menus){
-            if (antPathMatcher.match(menu.getUrl(), requestUrl)) { // antPathMatcher.match(String pattern,String path) pattern 规则 用来做URL字符串匹配；
+            // 匹配数据库中的权限链接： 如：/system/basic/** 和请求的链接做对比
+            if (antPathMatcher.match(menu.getPath(), requestUrl)) { // antPathMatcher.match(String pattern,String path) pattern 规则 用来做URL字符串匹配；
                 List<Role> roles = menu.getRoles(); // 获取访问当前url所需要的角色
                 String[] str = new String[roles.size()]; // SecurityConfig.createList() 参数为 字符串 ，所以要将roles转化为字符串
                 for(int i=0; i<roles.size();i++){

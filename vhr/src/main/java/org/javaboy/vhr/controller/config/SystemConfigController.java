@@ -1,7 +1,7 @@
-package org.javaboy.vhr.controller;
+package org.javaboy.vhr.controller.config;
 
 import org.javaboy.vhr.model.Menu;
-import org.javaboy.vhr.serve.MenuServer;
+import org.javaboy.vhr.serve.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,11 @@ import java.util.List;
 @RequestMapping("/system/config")
 public class SystemConfigController {
     @Autowired
-    MenuServer menuServer;
+    MenuService menuService;
 
-    // 前端数据不可行，所以数据方面
+    // 前端数据不可信，所以数据方面如果能从后端获取信息就后端进行获取
     @GetMapping("/menu")
     public List<Menu> getMenusByHrId() {
-        return menuServer.getMenusByHrId();
+        return menuService.getMenusByHrId();
     }
 }

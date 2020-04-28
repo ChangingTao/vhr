@@ -3,7 +3,7 @@ package org.javaboy.vhr.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.javaboy.vhr.model.Hr;
 import org.javaboy.vhr.model.RespBean;
-import org.javaboy.vhr.serve.HrServer;
+import org.javaboy.vhr.serve.HrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +37,7 @@ import java.io.PrintWriter;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    HrServer hrServer;
+    HrService hrService;
     @Autowired
     CustomFilterInvocationSecurityMetadataSource customFilterInvocationSecurityMetadataSource;
     @Autowired
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 引入 server
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(hrServer);
+        auth.userDetailsService(hrService);
     }
 
     @Override
@@ -70,7 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         object.setSecurityMetadataSource(customFilterInvocationSecurityMetadataSource);
                         return object;
                     }
-
                 })
                 .and()
                 .formLogin()
@@ -92,7 +91,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         out.write(s);
                         out.flush();
                         out.close();
-
                     }
                 })
                 .failureHandler(new AuthenticationFailureHandler() {
@@ -134,23 +132,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .permitAll()
                 .and()
-                .csrf().disable()
-        .exceptionHandling()
+                .exceptionHandling()
                 // 没有认证时，在这里处理结果，不进行重定向
                 .authenticationEntryPoint(new AuthenticationEntryPoint() {
-            @Override
-            public void commence(HttpServletRequest req, HttpServletResponse resp, AuthenticationException authException) throws IOException, ServletException {
-                // 通过 commence 方法决定请求失败后进行重定向操作还是什么操作
-                resp.setContentType("application/json;charset=utf-8");
-                PrintWriter out = resp.getWriter();
-                RespBean respBean = RespBean.error("访问失败！");
-                if (authException instanceof InsufficientAuthenticationException) {
-                    respBean.setMsg("请求失败，请萨大联系管理员");
-                }
-                out.write(new ObjectMapper().writeValueAsString(respBean));
-                out.flush();
-                out.close();
-            }
-        });
+                    @Override
+                    public void commence(HttpServletRequest req, HttpServletResponse resp, AuthenticationException authException) throws IOException, ServletException {
+                        // 通过 commence 方法决定请求失败后进行重定向操作还是什么操作
+                        resp.setContentType("application/json;charset=utf-8");
+                        PrintWriter out = resp.getWriter();
+                        RespBean respBean = RespBean.error("访问失败！");
+                        if (authException instanceof InsufficientAuthenticationException) {
+                            respBean.setMsg("请求失败，请联系管理员");
+                        }
+                        out.write(new ObjectMapper().writeValueAsString(respBean));
+                        out.flush();
+                        out.close();
+                    }
+                });
+        http.csrf().disable();
     }
 }

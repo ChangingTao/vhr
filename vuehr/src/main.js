@@ -21,7 +21,8 @@ Vue.prototype.deleteRequest = deleteRequest;
 Vue.prototype.putRequest = putRequest;
 Vue.prototype.postRequest = postRequest;
 
-Vue.use(ElementUI);
+// 设置全局属性 size
+Vue.use(ElementUI, {size: 'small'});
 
 // 配置全局导航守卫
 router.beforeEach((to, from, next) => {

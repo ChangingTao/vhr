@@ -2,6 +2,7 @@ package org.javaboy.vhr.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.javaboy.vhr.model.Position;
+import org.javaboy.vhr.model.Role;
 
 import java.util.List;
 
@@ -21,4 +22,5 @@ public interface PositionMapper {
     List<Position> getAllPositions();
 
     Integer deletePositionsByIds(@Param("ids") Integer[] ids);
+
 }

@@ -1,12 +1,14 @@
 package org.javaboy.vhr.serve;
 
 import org.javaboy.vhr.mapper.MenuMapper;
+import org.javaboy.vhr.mapper.MenuRoleMapper;
 import org.javaboy.vhr.model.Hr;
 import org.javaboy.vhr.model.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +21,9 @@ import java.util.List;
 public class MenuService {
     @Autowired
     MenuMapper menuMapper;
+
+    @Autowired
+    MenuRoleMapper menuRoleMapper;
 
     /**
      * 查询当前用户所能访问的菜单数据
@@ -38,4 +43,20 @@ public class MenuService {
         return menuMapper.getAllMenusWithRole();
     }
 
+    public List<Menu> getAllMenus() {
+        return menuMapper.getAllMenus();
+    }
+
+    public List<Integer> getMidsByRid(Integer rid) {
+        return menuMapper.getMidsByRid(rid);
+    }
+
+    // 添加事务操作
+    @Transactional
+    public boolean updateMenuRole(Integer rid, Integer[] mids) {
+        // 先将当前用户删除再插入当前用户权限信息
+        menuRoleMapper.deleteById(rid);
+        Integer result = menuRoleMapper.insertRecord(rid, mids);
+        return result == mids.length;
+    }
 }

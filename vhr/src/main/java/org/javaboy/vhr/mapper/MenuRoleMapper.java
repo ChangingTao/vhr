@@ -1,5 +1,6 @@
 package org.javaboy.vhr.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.javaboy.vhr.model.MenuRole;
 
 public interface MenuRoleMapper {
@@ -14,4 +15,8 @@ public interface MenuRoleMapper {
     int updateByPrimaryKeySelective(MenuRole record);
 
     int updateByPrimaryKey(MenuRole record);
+
+    void deleteById(Integer rid);
+
+    Integer insertRecord(@Param("rid") Integer rid,@Param("mids") Integer[] mids);
 }

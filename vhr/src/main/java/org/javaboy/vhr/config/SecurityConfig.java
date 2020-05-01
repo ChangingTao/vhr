@@ -139,6 +139,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void commence(HttpServletRequest req, HttpServletResponse resp, AuthenticationException authException) throws IOException, ServletException {
                         // 通过 commence 方法决定请求失败后进行重定向操作还是什么操作
                         resp.setContentType("application/json;charset=utf-8");
+                        // 设置 状态码 来提示用户未登录
+                        resp.setStatus(401);
                         PrintWriter out = resp.getWriter();
                         RespBean respBean = RespBean.error("访问失败！");
                         if (authException instanceof InsufficientAuthenticationException) {

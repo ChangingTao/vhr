@@ -1,10 +1,14 @@
 package org.javaboy.vhr.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
+@ApiModel("权限信息实体")
 public class JobLevel {
+    @ApiModelProperty("权限信息Id")
     private Integer id;
 
     private String name;

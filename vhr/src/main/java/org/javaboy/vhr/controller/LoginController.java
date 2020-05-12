@@ -1,5 +1,7 @@
 package org.javaboy.vhr.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.javaboy.vhr.model.RespBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;

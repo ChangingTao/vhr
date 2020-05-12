@@ -31,7 +31,7 @@
         components: {PermissMana, EcMana, JobLevelMana, PosMana, DepMana},
         data(){
             return{
-                activeName: 'permiss-mana'
+                activeName: 'dep-mana'
             }
         }
     }

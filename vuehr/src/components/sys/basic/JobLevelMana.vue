@@ -20,6 +20,10 @@
                     :data="jls"
                     stripe
                     border
+                    v-loading="loading"
+                    element-loading-text="正在发送数据中"
+                    element-loading-spinner="el-icon-loading"
+                    element-loading-background="rgba(0, 0, 0, 0.8)"
                     size="small"
                     style="width: 80%"
                     @selection-change="handleSelectionChange">
@@ -121,6 +125,7 @@
         name: "JobLevelMana",
         data() {
             return {
+                loading: false,
                 jl: {
                     name: '',
                     titleLevel: ''
@@ -147,7 +152,9 @@
         },
         methods: {
             initJls() {
+                this.loading = true
                 this.getRequest("/system/basic/joblevel/").then(res => {
+                this.loading = false
                     if (res) {
                         this.jls = res
                         this.jl = {

@@ -1,5 +1,10 @@
 <template>
-    <div>
+    <div
+            v-loading="globalLoading"
+            element-loading-text="正在加载中"
+            element-loading-spinner="el-icon-loading"
+            element-loading-background="rgba(0, 0, 0, 0.8)"
+    >
         <div class="permissManaTool">
             <el-input size="small" placeholder="请输入角色英文名" v-model="role.name">
                 <template slot="prepend">ROLE_</template>
@@ -9,7 +14,14 @@
             <el-button size="small" type="primary" icon="el-icon-plus" @click="doAddRole">添加角色</el-button>
         </div>
         <div class="permissManaMain">
-            <el-collapse v-model="activeName" accordion @change="change">
+            <el-collapse
+                    v-model="activeName"
+                    accordion
+                    v-loading="loading"
+                    element-loading-text="正在加载中"
+                    element-loading-spinner="el-icon-loading"
+                    element-loading-background="rgba(0, 0, 0, 0.8)"
+                    @change="change">
                 <el-collapse-item :title="r.nameZh" :name="r.id" v-for="(r, index) in roles" :key="index">
                     <el-card class="box-card">
                         <div slot="header" class="clearfix">
@@ -41,6 +53,8 @@
         name: "PermissMana",
         data() {
             return {
+                globalLoading: false,
+                loading: false,
                 role: {
                     name: '',
                     nameZh: ''
@@ -65,7 +79,9 @@
                 }
             },
             initRoles() {
+                this.loading = true
                 this.getRequest("/system/basic/permiss/").then(res => {
+                    this.loading = false
                     if (res) {
                         this.roles = res;
                     }
@@ -103,8 +119,10 @@
                 this.activeName = -1
             },
             doAddRole() {
+                this.globalLoading = true
                 if (this.role.name && this.role.nameZh) {
                     this.postRequest("/system/basic/permiss/role", this.role).then(res => {
+                        this.globalLoading = false
                         if (res) {
                             this.role.nameZh = ''
                             this.role.name = ''

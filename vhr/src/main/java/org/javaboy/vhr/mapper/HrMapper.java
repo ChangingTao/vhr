@@ -1,7 +1,9 @@
 package org.javaboy.vhr.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.javaboy.vhr.model.Hr;
 import org.javaboy.vhr.model.Role;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -21,4 +23,6 @@ public interface HrMapper {
     Hr loadUserByUsername(String username);
 
     List<Role> getHrRolesById(Integer id);
+
+    List<Hr> getAllHrs(@Param("hrId") Integer hrId,@Param("keywords") String keywords);
 }

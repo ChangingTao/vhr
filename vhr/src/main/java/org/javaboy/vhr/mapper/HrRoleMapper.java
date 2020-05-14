@@ -1,5 +1,6 @@
 package org.javaboy.vhr.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.javaboy.vhr.model.HrRole;
 
 public interface HrRoleMapper {
@@ -14,4 +15,8 @@ public interface HrRoleMapper {
     int updateByPrimaryKeySelective(HrRole record);
 
     int updateByPrimaryKey(HrRole record);
+
+    void deleteByHrid(Integer hrId);
+
+    Integer addRole(@Param("hrId") Integer hrId,@Param("rids") Integer[] rids);
 }

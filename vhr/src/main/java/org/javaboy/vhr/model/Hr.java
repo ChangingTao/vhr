@@ -1,5 +1,7 @@
 package org.javaboy.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,10 +32,6 @@ public class Hr implements UserDetails {
     private String remark;
 
     private List<Role> roles;
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
 
     public List<Role> getRoles() {
         return roles;
@@ -119,6 +117,7 @@ public class Hr implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>(roles.size());
         for (Role role : roles) {

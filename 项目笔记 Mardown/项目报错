@@ -34,3 +34,24 @@ Vue项目中存在 `.git` 文件，无法访问
 
 > 参考链接： https://blog.csdn.net/weixin_38927964/article/details/84201322 
 
+
+
+# 2、更新用户状态报错
+
+```shell
+org.apache.ibatis.reflection.ReflectionException: Illegal overloaded getter method with ambiguous type for property 'enabled' in class 'org.javaboy.vhr.model.Hr'. This breaks the JavaBeans specification and can cause unpredictable results.
+```
+
+原因：
+
+在用户信息当中 `isEnabled()` 相当于 `getEnabled()`
+
+```java
+@Override
+public boolean isEnabled() {
+  return enabled;
+}
+```
+
+
+

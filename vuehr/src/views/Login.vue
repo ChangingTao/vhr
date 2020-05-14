@@ -1,9 +1,19 @@
 <template>
     <div>
-        <el-form :model="LoginForm" :rules="LoginRules" ref="LoginRef" label-width="100px" class="loginContainer">
+        <el-form
+                :model="LoginForm"
+                :rules="LoginRules"
+                v-loading="loading"
+                element-loading-text="正在登陆中"
+                element-loading-spinner="el-icon-loading"
+                element-loading-background="rgba(0, 0, 0, 0.8)"
+                ref="LoginRef"
+                label-width="100px"
+                class="loginContainer">
             <h3 class="loginTitle">系统登录</h3>
             <el-form-item label="用户名称" prop="username">
-                <el-input size="normal" type="text" v-model="LoginForm.username" auto-complete="off" placeholder="请输入用户名"></el-input>
+                <el-input size="normal" type="text" v-model="LoginForm.username" auto-complete="off"
+                          placeholder="请输入用户名"></el-input>
             </el-form-item>
             <el-form-item label="用户密码" prop="password">
                 <el-input size="normal" type="password" v-model="LoginForm.password"
@@ -21,6 +31,7 @@
         name: "Login",
         data() {
             return {
+                loading: false,
                 LoginForm: {
                     username: 'admin',
                     password: '123'
@@ -36,7 +47,9 @@
             submitClick() {
                 this.$refs.LoginRef.validate((valid) => {
                     if (valid) {
+                        this.loading = true;
                         this.postKeyValueRequest('/doLogin', this.LoginForm).then(res => {
+                            this.loading = false;
                             if (res) {
                                 // 将用户信息存储到sessionStorage存储空间中
                                 window.sessionStorage.setItem("user", JSON.stringify(res.obj))

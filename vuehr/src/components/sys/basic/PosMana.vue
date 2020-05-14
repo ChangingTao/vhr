@@ -5,6 +5,10 @@
                     size="small"
                     class="addPosInput"
                     placeholder="添加职位..."
+                    v-loading="loading"
+                    element-loading-text="正在请求中"
+                    element-loading-spinner="el-icon-loading"
+                    element-loading-background="rgba(0, 0, 0, 0.8)"
                     prefix-icon="el-icon-plus"
                     @keydown.enter.native="addPosition"
                     v-model="pos.name">
@@ -90,6 +94,7 @@
         name: "PosMana",
         data() {
             return {
+                loading: false,
                 pos: {
                     name: '',
                 },
@@ -107,7 +112,9 @@
         },
         methods: {
             initPositions() {
+                this.loading = true;
                 this.getRequest("/system/basic/pos/").then(res => {
+                    this.loading = false;
                     if (res) {
                         this.positions = res;
                     }

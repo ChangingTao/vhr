@@ -96,7 +96,6 @@
             },
             initSelectMenus(rid) {
                 this.getRequest("/system/basic/permiss/mids/" + rid).then(res => {
-
                     if (res) {
                         this.selectedMenus = res
                     }
@@ -109,9 +108,11 @@
                 selectedKeys.forEach(key => {
                     url += '&mids=' + key
                 })
+
                 this.putRequest(url).then(resp => {
                     if (resp) {
                         this.activeName = -1
+                        this.initRoles()
                     }
                 })
             },

@@ -1,7 +1,29 @@
 package org.javaboy.vhr.model;
 
+import java.util.Objects;
+
 public class Nation {
     private Integer id;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Nation nation = (Nation) o;
+        return name.equals(nation.name);
+    }
+
+    public Nation() {
+    }
+
+    public Nation(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     private String name;
 

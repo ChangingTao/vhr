@@ -56,6 +56,10 @@ public class MenuService {
     public boolean updateMenuRole(Integer rid, Integer[] mids) {
         // 先将当前用户删除再插入当前用户权限信息
         menuRoleMapper.deleteById(rid);
+        // 判断：如果mids不存在则不进行插入操作
+        if (mids == null || mids.length == 0){
+            return true;
+        }
         Integer result = menuRoleMapper.insertRecord(rid, mids);
         return result == mids.length;
     }

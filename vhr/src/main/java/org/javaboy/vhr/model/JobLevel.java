@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
+import java.util.Objects;
 
 @ApiModel("权限信息实体")
 public class JobLevel {
@@ -19,6 +20,26 @@ public class JobLevel {
     private Date createDate;
 
     private Boolean enabled;
+
+    public JobLevel() {
+    }
+
+    public JobLevel(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JobLevel jobLevel = (JobLevel) o;
+        return name.equals(jobLevel.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     public Integer getId() {
         return id;

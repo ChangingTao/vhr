@@ -118,4 +118,10 @@
   <delete id="deleteDepById" statementType="CALLABLE">
     call deleteDep(#{id,mode=IN,jdbcType=INTEGER},#{result,mode=OUT,jdbcType=INTEGER})
   </delete>
+    <select id="getAllDepartmentWithOutChildren" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"></include>
+      from
+      department
+    </select>
 </mapper>

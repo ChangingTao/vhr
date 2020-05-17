@@ -125,7 +125,7 @@
                     }).then(() => {
                         this.deleteRequest("/system/basic/department/" + data.id).then(res => {
                             if (res) {
-                                this.removeDepFromDeps(this.deps, data.id)
+                                this.removeDepFromDeps(null, this.deps, data.id)
                             }
                         })
                     }).catch(() => {
@@ -146,9 +146,7 @@
             doAddDep() {
                 this.postRequest("/system/basic/department/", this.dep).then(res => {
                     if (res) {
-                        //
                         this.addDep2Deps(this.deps, res.obj);
-
                         this.dialogVisible = false;
                         // 初始化变量
                         this.initDep();
@@ -170,6 +168,9 @@
                     if (d.id == dep.parentId) {
                         // concat：数组拼接函数
                         d.children = d.children.concat(dep);
+                        if (d.children.length > 0) {
+                            d.parent = true
+                        }
                         return
                     } else {
                         // 如果不是其父id，则进行递归操作
@@ -178,14 +179,17 @@
                 }
             },
             // 递归 从deps数组中移除 删除对象 数据
-            removeDepFromDeps(deps, id) {
+            removeDepFromDeps(p, deps, id) {
                 for (let i = 0; i < deps.length; i++) {
                     let d = deps[i];
                     if (d.id === id) {
                         deps.splice(i, 1);
+                        if (deps.length == 0) {
+                            p.parent = false;
+                        }
                         return
                     } else {
-                        this.removeDepFromDeps(d.children, id);
+                        this.removeDepFromDeps(d, d.children, id);
                     }
                 }
             }

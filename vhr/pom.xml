@@ -59,6 +59,12 @@
             <version>1.9.5</version>
         </dependency>
 
+        <!-- 操作excel POI -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.2</version>
+        </dependency>
         <!-- swagger2 UI 界面 -->
         <dependency>
             <groupId>io.springfox</groupId>

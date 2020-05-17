@@ -19,6 +19,7 @@ public class GlobalExceptionHandler {
         if (e instanceof MySQLIntegrityConstraintViolationException) {
             return RespBean.error("改数据存在关联数据，操作失败！");
         }
+        System.out.println(e);
         return RespBean.error("数据库异常，操作失败！");
     }
 }

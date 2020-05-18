@@ -1,0 +1,53 @@
+[33mcommit 6c60570eed9398ae83173a0f1f6fefee580525aa[m[33m ([m[1;36mHEAD -> [m[1;32mmoduleDivision[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/empBasic[m[33m, [m[1;31mgitee/master[m[33m, [m[1;31mgitee/empBasic[m[33m, [m[1;32mmaster[m[33m, [m[1;32mempBasic[m[33m)[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Sun May 17 22:17:34 2020 +0800
+
+    前后端完成员工资料 - 基本资料开发
+
+[33mcommit 76f771a9069553125dc533192c62618c97e990c9[m[33m ([m[1;31morigin/sysHr[m[33m, [m[1;31mgitee/sysHr[m[33m, [m[1;32msysHr[m[33m)[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Thu May 14 10:10:24 2020 +0800
+
+    前后端完成系统管理- 操作员管理 开发
+
+[33mcommit 1dd9d8f1ccd691babed6846cf83757e69cfd2765[m[33m ([m[1;31morigin/sysBasic[m[33m, [m[1;31mgitee/sysBasic[m[33m, [m[1;32msysBasic[m[33m)[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Tue May 12 19:00:55 2020 +0800
+
+    前后端完成基础信息设置-权限组栏的开发、添加了 knife4j 来生成api文档
+
+[33mcommit e467498f5a4e6273286e00e7aeb6ff1e6cb94c41[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Fri May 1 16:56:26 2020 +0800
+
+    前后端完成 基础信息设置 - 权限组 栏的开发
+
+[33mcommit a7aa79f3c0af1d0d9a9c05eb88df4d67b251b509[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Wed Apr 29 16:18:56 2020 +0800
+
+    前后端完成 基础信息设置 - 职称管理 栏的开发
+
+[33mcommit 8b511f096e6a1290fffef8e0d6242fd504b00800[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Tue Apr 28 17:12:47 2020 +0800
+
+    前后端完成 基础信息设置页 -  职位管理开发栏 的开发
+
+[33mcommit 71c53bd0a502a72de83119aa78a4eb5b21551868[m[33m ([m[1;31morigin/homePage[m[33m, [m[1;31mgitee/homePage[m[33m, [m[1;32mhomePage[m[33m)[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Sun Apr 26 22:58:44 2020 +0800
+
+    添加新的文件用于记录项目笔记、完成后端菜单权限配置、解决返回用户信息没携带角色信息、解决重定向错误
+
+[33mcommit 5b7ba26c3f15f332f0b17102b05f947961a36270[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Wed Apr 22 18:31:42 2020 +0800
+
+    完成后端菜单数据接口；前端使用VueX存放格式化后的菜单数据并将数据存入vue-router中，下载font-awesome来显示icon
+
+[33mcommit 268ca9bf990c727856f29446dc25c92b2a157d52[m
+Author: ChangingTao <RocketWizt@163.com>
+Date:   Mon Apr 20 11:37:14 2020 +0800
+
+    完成后端安全登录校验;前端获取登录数据;前端首页顶部以及侧边栏menu数据

@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/vhr/mailserver/mailserver.iml" filepath="$PROJECT_DIR$/vhr/mailserver/mailserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/vhr/vhr.iml" filepath="$PROJECT_DIR$/vhr/vhr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vhr/vhrserver/vhr-mapper/vhr-mapper.iml" filepath="$PROJECT_DIR$/vhr/vhrserver/vhr-mapper/vhr-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vhr/vhrserver/vhr-model/vhr-model.iml" filepath="$PROJECT_DIR$/vhr/vhrserver/vhr-model/vhr-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vhr/vhrserver/vhr-service/vhr-service.iml" filepath="$PROJECT_DIR$/vhr/vhrserver/vhr-service/vhr-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vhr/vhrserver/vhr-web/vhr-web.iml" filepath="$PROJECT_DIR$/vhr/vhrserver/vhr-web/vhr-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vhr/vhrserver/vhrserver.iml" filepath="$PROJECT_DIR$/vhr/vhrserver/vhrserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/微人事.iml" filepath="$PROJECT_DIR$/.idea/微人事.iml" />
     </modules>
   </component>

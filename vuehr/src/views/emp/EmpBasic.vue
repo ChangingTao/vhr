@@ -108,14 +108,14 @@
                                     title="请选择部门"
                                     width="200"
                                     trigger="manual"
-                                    v-model="popVisible">
+                                    v-model="searchPopVisible">
                                 <el-tree :data="allDeps" default-expand-all :props="defaultProps"
                                          @node-click="searchViewHandleNodeClick"></el-tree>
                                 <div slot="reference" style="width: 130px;display: inline-flex;font-size: 13px;
                                 border: 1px solid #dedede; height: 26px;border-radius: 5px;cursor: pointer;
                                 align-items: center;padding-left: 8px;box-sizing: border-box;margin-left: 3px;"
-                                     @click="showDepView">
-                                    {{inputDepName}}
+                                     @click="searchPopVisible = !searchPopVisible">
+                                    {{searchInputDepName}}
                                 </div>
                             </el-popover>
                         </el-col>
@@ -680,6 +680,10 @@
                     workAge: [{required: true, message: '请输入工龄', trigger: 'blur'}],
                 },
                 showAdvanceSearchView: false,
+                // 高级搜索树内容
+                searchInputDepName: '所属部门',
+                // 高级搜索的树展开
+                searchPopVisible: false,
                 // 高级搜索存值对象
                 searchValue: {
                     politicId: null,
@@ -933,9 +937,9 @@
             },
             // 高级输入框的树点击事件（所属部门）
             searchViewHandleNodeClick(data){
-                this.popVisible = !this.popVisible
-                this.emp.departmentId = data.id
-                this.inputDepName = data.name
+                this.searchPopVisible = !this.searchPopVisible
+                this.searchValue.departmentId = data.id
+                this.searchInputDepName = data.name
             }
         }
     }

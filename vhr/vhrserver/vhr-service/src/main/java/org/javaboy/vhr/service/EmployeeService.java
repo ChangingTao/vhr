@@ -60,13 +60,13 @@ public class EmployeeService {
         double month = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract))) * 12
                 + (Double.parseDouble(monthFormat.format(endContract)) - Double.parseDouble(monthFormat.format(beginContract)));
 
-        employee.setContractTerm(Double.parseDouble(decimalFormat.format(month/12)));
+        employee.setContractTerm(Double.parseDouble(decimalFormat.format(month / 12)));
 
         int result = employeeMapper.insertSelective(employee);
         // 因为我们查询之后要发送邮件欢迎员工，所以需要查询部门、职称、职位等信息
-        if (result == 1){
+        if (result == 1) {
             logger.info(employee.toString());
-            Employee emp =  employeeMapper.getEmployeeById(employee.getId());
+            Employee emp = employeeMapper.getEmployeeById(employee.getId());
             rabbitTemplate.convertAndSend("changingTao.mail.welcome", emp);
         }
         return result;
@@ -86,5 +86,20 @@ public class EmployeeService {
 
     public Integer addEmps(List<Employee> list) {
         return employeeMapper.addEmps(list);
+    }
+
+    public RespPageBean getEmployeeByPageWithSalary(Integer page, Integer size) {
+        if (page != null && size != null) {
+            page = (page - 1) * size;
+        }
+        List<Employee> list = employeeMapper.getEmployeeByPageWithSalary(page, size);
+        RespPageBean respPageBean = new RespPageBean();
+        respPageBean.setData(list);
+        respPageBean.setTotal(employeeMapper.getTotal(null, null));
+        return respPageBean;
+    }
+
+    public Integer updateEmployeeSalaryById(Integer eid, Integer sid) {
+        return employeeMapper.updateEmployeeSalaryById(eid, sid);
     }
 }

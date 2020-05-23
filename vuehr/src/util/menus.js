@@ -12,6 +12,8 @@ export const initMenu = (router, store) => {
             router.addRoutes(fmtRoutes);
             // 将数据存放到VueX中
             store.commit('initRoutes', fmtRoutes)
+            // 连接服务端websocket
+            store.dispatch('connect');
         }
     })
 }

@@ -51,6 +51,7 @@
                         this.postKeyValueRequest('/doLogin', this.LoginForm).then(res => {
                             this.loading = false;
                             if (res) {
+                                this.$store.commit("INIT_CURRENTHR", res.obj)
                                 // 将用户信息存储到sessionStorage存储空间中
                                 window.sessionStorage.setItem("user", JSON.stringify(res.obj))
                                 // 用户是否在登录之前输入过链接,如果输入过链接则登录完毕跳转到那个页面

@@ -171,5 +171,8 @@
         </if>
         order by hr.id
     </select>
+    <select id="getAllHrsExceptCurrentHr" resultMap="BaseResultMap">
+        select * from hr where id != #{id}
+    </select>
 
 </mapper>
